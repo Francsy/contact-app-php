@@ -3,14 +3,7 @@
 if (file_exists("contacts.json")) {
   $contacts = json_decode(file_get_contents("contacts.json"), true);
 } else {
-  $contacts = [
-    ["name" => "Rick Sánchez", "phone_number" => mt_rand(100000000,999999999)],
-    ["name" => "Morty Smith", "phone_number" => mt_rand(100000000,999999999)],
-    ["name" => "Summer Smith", "phone_number" => mt_rand(100000000,999999999)],
-    ["name" => "Beth Smith", "phone_number" => mt_rand(100000000,999999999)],
-    ["name" => "Birdperson", "phone_number" => mt_rand(100000000,999999999)],
-    ["name" => "Squanchy", "phone_number" => mt_rand(100000000,999999999)],
-  ];
+  $contacts = [];
 }
 
 ?>
@@ -61,7 +54,17 @@ if (file_exists("contacts.json")) {
   <main>
     <div class="container pt-4 p-3">
       <div class="row">
-        <?php foreach($contacts as $contact): ?>
+        <?php if(count($contacts) == 0):?>
+          <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+              <p>You have no contacts saved yet!</p>
+              <a href="add.php">Add the first!</a>
+            </div>
+          </div>
+        <?php 
+        endif;
+        foreach($contacts as $contact):
+        ?>
         <div class="col-md-4 mb-3">
           <div class="card text-center">
             <div class="card-body">
