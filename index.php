@@ -1,13 +1,17 @@
 <?php
 
-$contacts = [
-  ["name" => "Rick", "phone_number" => mt_rand(100000000,999999999)],
-  ["name" => "Morty", "phone_number" => mt_rand(100000000,999999999)],
-  ["name" => "Summer", "phone_number" => mt_rand(100000000,999999999)],
-  ["name" => "Beth", "phone_number" => mt_rand(100000000,999999999)],
-  ["name" => "Birdperson", "phone_number" => mt_rand(100000000,999999999)],
-  ["name" => "Squanchy", "phone_number" => mt_rand(100000000,999999999)],
-]
+if (file_exists("contacts.json")) {
+  $contacts = json_decode(file_get_contents("contacts.json"), true);
+} else {
+  $contacts = [
+    ["name" => "Rick Sánchez", "phone_number" => mt_rand(100000000,999999999)],
+    ["name" => "Morty Smith", "phone_number" => mt_rand(100000000,999999999)],
+    ["name" => "Summer Smith", "phone_number" => mt_rand(100000000,999999999)],
+    ["name" => "Beth Smith", "phone_number" => mt_rand(100000000,999999999)],
+    ["name" => "Birdperson", "phone_number" => mt_rand(100000000,999999999)],
+    ["name" => "Squanchy", "phone_number" => mt_rand(100000000,999999999)],
+  ];
+}
 
 ?>
 
@@ -26,7 +30,7 @@ $contacts = [
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand font-weight-bold" href="#">
+      <a class="navbar-brand font-weight-bold" href="./">
         <img class="mr-2" src="./static/img/logo.svg" />
         Contactify
       </a>
@@ -44,10 +48,10 @@ $contacts = [
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="./">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./add.html">+ Add Contact</a>
+            <a class="nav-link" href="./add.php">+ Add Contact</a>
           </li>
         </ul>
       </div>
